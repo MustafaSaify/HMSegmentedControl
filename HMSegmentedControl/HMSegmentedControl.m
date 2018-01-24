@@ -157,6 +157,7 @@
     self.selectionIndicatorBoxLayer = [CALayer layer];
     self.selectionIndicatorBoxLayer.opacity = self.selectionIndicatorBoxOpacity;
     self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
+    self.selectionIndicatorBoxLayer.contents = (__bridge id _Nullable)(self.sectionSelectedBackgroundImage.CGImage);
     self.selectionIndicatorBoxOpacity = 0.2;
     
     self.contentMode = UIViewContentModeRedraw;
