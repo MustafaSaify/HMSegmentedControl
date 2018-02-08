@@ -687,13 +687,14 @@
             totalWidth += stringWidth;
         }];
         
-        if (self.shouldStretchSegmentsToScreenSize && totalWidth < self.bounds.size.width) {
+        if (self.centerHorizontally && totalWidth < self.bounds.size.width) {
             CGFloat whitespace = self.bounds.size.width - totalWidth;
-            CGFloat whitespaceForSegment = whitespace / [mutableSegmentWidths count];
-            [mutableSegmentWidths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CGFloat extendedWidth = whitespaceForSegment + [obj floatValue];
-                [mutableSegmentWidths replaceObjectAtIndex:idx withObject:[NSNumber numberWithFloat:extendedWidth]];
-            }];
+//            CGFloat whitespaceForSegment = whitespace / [mutableSegmentWidths count];
+//            [mutableSegmentWidths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                CGFloat extendedWidth = whitespaceForSegment + [obj floatValue];
+//                [mutableSegmentWidths replaceObjectAtIndex:idx withObject:[NSNumber numberWithFloat:extendedWidth]];
+//            }];
+            _scrollView.contentInset = UIEdgeInsetsMake(_scrollView.contentInset.top, whitespace/2.0, _scrollView.contentInset.bottom, whitespace/2.0);
         }
         
         self.segmentWidthsArray = [mutableSegmentWidths copy];
