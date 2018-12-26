@@ -225,7 +225,7 @@
 #pragma mark - Drawing
 
 - (CGSize)measureTitleAtIndex:(NSUInteger)index {
-    if (index >= self.sectionTitles.count) {
+    if (index < 0 || index >= self.sectionTitles.count) {
         return CGSizeZero;
     }
     
@@ -247,6 +247,9 @@
 }
 
 - (NSAttributedString *)attributedTitleAtIndex:(NSUInteger)index {
+    if (index < 0 || index >= self.sectionTitles.count) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
     id title = self.sectionTitles[index];
     BOOL selected = (index == self.selectedSegmentIndex) ? YES : NO;
     
